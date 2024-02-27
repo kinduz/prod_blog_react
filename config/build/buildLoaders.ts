@@ -4,6 +4,21 @@ import {BuildOptions} from "./types/config";
 
 export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
     const {isDev} = options;
+
+    const svgLoader = {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
+    }
+
+    const fileLoader = {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+            {
+                loader: 'file-loader',
+            },
+        ],
+    }
+
     // В случае неиспользования typescript необходимо использовать babel-loader
     const typescriptLoader = {
         test: /\.tsx?$/,
@@ -28,7 +43,31 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
             "sass-loader",
         ],
     }
+
+    const babelLoader = {
+        test: /\.(js|jsx|tsx)$/,
+        exclude: /node_modules/,
+        use: {
+            loader: "babel-loader",
+            options: {
+                presets: ['@babel/preset-env'],
+                plugins: [
+                   [
+                      "i18next-extract",
+                       {
+                           locales: ["ru", "en"],
+                           keyAsDefaultValue: true,
+                       }
+                   ],
+                ]
+            }
+        }
+    };
+
     return [
+        fileLoader,
+        svgLoader,
+        babelLoader,
         typescriptLoader,
         cssLoader
     ]

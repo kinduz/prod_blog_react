@@ -6,5 +6,6 @@ export function buildDevServer(options: BuildOptions): DevServerConfigration {
         // TODO: Поменять open на true, когда проект будет готов
         open: false,
         historyApiFallback: true,
+        hot: true,
     }
 }
