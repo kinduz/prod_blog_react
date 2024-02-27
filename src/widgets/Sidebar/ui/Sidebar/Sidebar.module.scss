@@ -1,0 +1,43 @@
+.sidebar {
+  height: calc(100vh - var(--navbar-height));
+  width: var(--sidebar-width);
+  background: var(--inverted-bg-color);
+  transition: .4s width;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  -webkit-box-shadow: 19px 23px 29px -11px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 19px 23px 29px -11px rgba(34, 60, 80, 0.2);
+  box-shadow: 19px 23px 29px -11px rgba(34, 60, 80, 0.2);
+  div:last-child {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.switchers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+  button {
+    height: 32px;
+  }
+  svg {
+    transition: .4s transform;
+    color: var(--primary-color);
+  }
+}
+
+.collapsedIcon {
+  font-size: 40px;
+  cursor: pointer;
+}
+
+.collapsed {
+  width: var(--sidebar-width-collapsed);
+  svg {
+    transform: rotate(180deg);
+  }
+}
